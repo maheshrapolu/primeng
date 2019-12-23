@@ -1,0 +1,25 @@
+<p-table #dt [value]="result" [globalFilterFields]="['title']"  >
+    <ng-template pTemplate="caption">
+        <div style="text-align: right"> 
+            <input type="text" pInputText size="50" placeholder="Global Filter"
+                (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>ID</th>
+            <th>UserId</th>
+            <th>Title</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+        <tr (click)="showModel(rowData)" >
+            <td>{{rowData.id}}</td>
+            <td>{{rowData.userId}}</td>
+            <td>{{rowData.title}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+<p-dialog header="Title" [(visible)]="display" [dismissableMask]="true" [modal]="true">
+    <p >{{ showData}}</p>
+ </p-dialog>
